@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vecta AI</title>
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --primary-color: #00f3ff;
+            --text-color: #e0e0e0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .ai-core-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            position: relative;
+        }
+
+        .ai-core {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-color) 0%, rgba(0, 243, 255, 0.2) 50%, transparent 70%);
+            box-shadow: 0 0 30px var(--primary-color), 0 0 60px rgba(0, 243, 255, 0.5);
+            animation: pulse 2s infinite alternate;
+        }
+
+        .ai-ring {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(0, 243, 255, 0.3);
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            100% { transform: scale(1.05); opacity: 1; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .ai-core-container.active .ai-core {
+            animation: pulse-fast 0.5s infinite alternate;
+            background: radial-gradient(circle, #ffffff 0%, var(--primary-color) 50%, transparent 70%);
+        }
+
+        @keyframes pulse-fast {
+            0% { transform: scale(0.9); }
+            100% { transform: scale(1.1); }
+        }
+
+        .chat-history {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.4;
+            backdrop-filter: blur(5px);
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: rgba(0, 243, 255, 0.15);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: #fff;
+        }
+
+        .message.ai {
+            align-self: flex-start;
+            background: var(--glass-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .input-panel {
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            background: rgba(0,0,0,0.5);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .input-panel input {
+            flex: 1;
+            background: var(--glass-bg);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 20px;
+            padding: 12px 20px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .input-panel input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+
+        .btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary-color);
+            color: var(--bg-color);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.9);
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="ai-core-container" id="aiCore">
+        <div class="ai-ring"></div>
+        <div class="ai-core"></div>
+    </div>
+
+    <div class="chat-history" id="chatHistory">
+        <div class="message ai">Системы инициализированы. Приветствую. Я Векта. Чем могу помочь?</div>
+    </div>
+
+    <div class="input-panel">
+        <input type="text" id="userInput" placeholder="Введите команду...">
+        <button class="btn" id="sendBtn">➤</button>
+    </div>
+
+    <script>
+        const chatHistory = document.getElementById('chatHistory');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const aiCore = document.getElementById('aiCore');
+
+        const BACKEND_URL = 'http://localhost:8000';
+        let ws;
+
+        function connectWebSocket() {
+            ws = new WebSocket(`${BACKEND_URL.replace('http', 'ws')}/ws`);
+            
+            ws.onopen = () => console.log('✅ WebSocket подключен');
+            
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                if (data.type === 'history') {
+                    chatHistory.innerHTML = '';
+                    data.data.forEach(msg => addMessage(msg.text, msg.sender, false));
+                } else if (data.type === 'new_message') {
+                    addMessage(data.data.text, data.data.sender, false);
+                    aiCore.classList.remove('active');
+                }
+            };
+            
+            ws.onclose = () => setTimeout(connectWebSocket, 3000);
+        }
+
+        function addMessage(text, sender, animate = true) {
+            const msg = document.createElement('div');
+            msg.classList.add('message', sender);
+            msg.textContent = text;
+            chatHistory.appendChild(msg);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+            if (animate && sender === 'ai') aiCore.classList.remove('active');
+        }
+
+        async function sendMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            addMessage(text, 'user');
+            userInput.value = '';
+            aiCore.classList.add('active');
+
+            try {
+                await fetch(`${BACKEND_URL}/api/message`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sender: 'user', text: text })
+                });
+            } catch (error) {
+                addMessage('Ошибка связи с Вектой', 'ai');
+                aiCore.classList.remove('active');
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+
+        connectWebSocket();
+    </script>
+</body>
+</html>
