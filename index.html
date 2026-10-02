@@ -7,16 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0e0a;
-            --sidebar-bg: rgba(13, 18, 13, 0.6);
-            --primary-color: #39ff14;
-            --primary-dim: rgba(57, 255, 20, 0.3);
+            --bg-color: #0a0e1a;
+            --sidebar-bg: rgba(13, 18, 30, 0.6);
+            --primary-color: #00d4ff;
+            --primary-dim: rgba(0, 212, 255, 0.3);
             --text-color: #e0e0e0;
-            --glass-bg: rgba(57, 255, 20, 0.06);
-            --glass-border: rgba(57, 255, 20, 0.15);
+            --glass-bg: rgba(0, 212, 255, 0.06);
+            --glass-border: rgba(0, 212, 255, 0.15);
             --glass-highlight: rgba(255, 255, 255, 0.08);
-            --user-msg-bg: rgba(57, 255, 20, 0.12);
-            --border-color: rgba(57, 255, 20, 0.2);
+            --user-msg-bg: rgba(0, 212, 255, 0.12);
+            --border-color: rgba(0, 212, 255, 0.2);
             --mic-active: #ff4757;
         }
 
@@ -32,13 +32,12 @@
             height: 100vh;
             overflow: hidden;
             background: 
-                radial-gradient(ellipse at 20% 50%, rgba(57, 255, 20, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(57, 255, 20, 0.05) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(57, 255, 20, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(0, 212, 255, 0.06) 0%, transparent 50%),
                 var(--bg-color);
         }
 
-        /* --- БОКОВАЯ ПАНЕЛЬ (Liquid Glass) --- */
         .sidebar {
             width: 280px;
             background: var(--sidebar-bg);
@@ -58,7 +57,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(57, 255, 20, 0.03);
+            background: rgba(0, 212, 255, 0.03);
         }
 
         .sidebar-header h2 {
@@ -67,11 +66,11 @@
             color: var(--primary-color);
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
 
         .btn-new-chat {
-            background: rgba(57, 255, 20, 0.15);
+            background: rgba(0, 212, 255, 0.15);
             backdrop-filter: blur(10px);
             color: var(--primary-color);
             border: 1px solid var(--primary-color);
@@ -85,8 +84,8 @@
         }
 
         .btn-new-chat:hover {
-            background: rgba(57, 255, 20, 0.25);
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+            background: rgba(0, 212, 255, 0.25);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
         }
 
         .chats-list {
@@ -108,7 +107,7 @@
         }
 
         .btn-add-group {
-            background: rgba(57, 255, 20, 0.1);
+            background: rgba(0, 212, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid var(--primary-color);
             color: var(--primary-color);
@@ -135,15 +134,15 @@
         }
 
         .chat-item:hover {
-            background: rgba(57, 255, 20, 0.08);
+            background: rgba(0, 212, 255, 0.08);
             border-color: var(--glass-border);
             backdrop-filter: blur(5px);
         }
 
         .chat-item.active {
-            background: rgba(57, 255, 20, 0.12);
+            background: rgba(0, 212, 255, 0.12);
             border-color: var(--primary-color);
-            box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
         }
 
         .chat-item-name {
@@ -183,7 +182,6 @@
             color: #ff4757;
         }
 
-        /* --- ОСНОВНАЯ ОБЛАСТЬ --- */
         .main {
             flex: 1;
             display: flex;
@@ -197,13 +195,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            background: rgba(13, 18, 13, 0.5);
+            background: rgba(13, 18, 30, 0.5);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
         }
 
         .btn-toggle-sidebar {
-            background: rgba(57, 255, 20, 0.1);
+            background: rgba(0, 212, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             color: var(--primary-color);
@@ -219,10 +217,9 @@
             font-size: 16px;
             color: var(--primary-color);
             font-weight: 600;
-            text-shadow: 0 0 8px rgba(57, 255, 20, 0.3);
+            text-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
         }
 
-        /* --- ДАТА/ВРЕМЯ --- */
         .datetime-display {
             text-align: center;
             padding: 12px 0 8px;
@@ -233,7 +230,6 @@
             font-weight: 500;
         }
 
-        /* --- НАЗВАНИЕ VECTA AI --- */
         .vecta-title {
             text-align: center;
             padding: 8px 0 15px;
@@ -243,10 +239,9 @@
             letter-spacing: 8px;
             text-transform: uppercase;
             font-weight: 700;
-            text-shadow: 0 0 20px rgba(57, 255, 20, 0.6), 0 0 40px rgba(57, 255, 20, 0.3);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.6), 0 0 40px rgba(0, 212, 255, 0.3);
         }
 
-        /* --- РОБОТ (БОЛЬШЕ И ВЫШЕ) --- */
         .robot-container {
             height: 240px;
             display: flex;
@@ -285,40 +280,28 @@
             transition: d 0.3s ease;
         }
 
-        /* Эмоции */
         .robot.happy .eye-left { d: path("M 55 95 Q 65 85 75 95"); }
         .robot.happy .eye-right { d: path("M 105 95 Q 115 85 125 95"); }
-        
         .robot.sad .eye-left { d: path("M 55 105 Q 65 115 75 105"); }
         .robot.sad .eye-right { d: path("M 105 105 Q 115 115 125 105"); }
-        
         .robot.angry .eye-left { d: path("M 50 100 L 75 92 L 78 102 Z"); }
         .robot.angry .eye-right { d: path("M 130 100 L 105 92 L 102 102 Z"); }
-        
         .robot.surprised .eye-left { d: path("M 60 88 A 10 10 0 1 0 80 108 A 10 10 0 1 0 60 88"); }
         .robot.surprised .eye-right { d: path("M 110 88 A 10 10 0 1 0 130 108 A 10 10 0 1 0 110 88"); }
-        
         .robot.sleepy .eye-left { d: path("M 55 100 L 75 100"); stroke: var(--primary-color); stroke-width: 5; fill: none; }
         .robot.sleepy .eye-right { d: path("M 105 100 L 125 100"); stroke: var(--primary-color); stroke-width: 5; fill: none; }
-        
         .robot.love .eye-left { d: path("M 65 92 C 65 87, 57 87, 57 94 C 57 101, 65 106, 65 106 C 65 106, 73 101, 73 94 C 73 87, 65 87, 65 92"); }
         .robot.love .eye-right { d: path("M 115 92 C 115 87, 107 87, 107 94 C 107 101, 115 106, 115 106 C 115 106, 123 101, 123 94 C 123 87, 115 87, 115 92"); }
-        
         .robot.confused .eye-left { d: path("M 58 88 A 8 10 0 1 0 74 108 A 8 10 0 1 0 58 88"); }
         .robot.confused .eye-right { d: path("M 108 94 A 10 8 0 1 0 128 110 A 10 8 0 1 0 108 94"); }
-        
         .robot.excited .eye-left { d: path("M 65 85 L 68 95 L 78 95 L 70 101 L 73 111 L 65 105 L 57 111 L 60 101 L 52 95 L 62 95 Z"); }
         .robot.excited .eye-right { d: path("M 115 85 L 118 95 L 128 95 L 120 101 L 123 111 L 115 105 L 107 111 L 110 101 L 102 95 L 112 95 Z"); }
-        
         .robot.scared .eye-left { d: path("M 58 88 A 12 12 0 1 0 82 112 A 12 12 0 1 0 58 88"); }
         .robot.scared .eye-right { d: path("M 108 88 A 12 12 0 1 0 132 112 A 12 12 0 1 0 108 88"); }
-        
         .robot.cool .eye-left { d: path("M 55 100 L 78 100 L 75 106 L 58 106 Z"); }
         .robot.cool .eye-right { d: path("M 102 100 L 125 100 L 122 106 L 105 106 Z"); }
-        
         .robot.blink .eye-shape { transform: scaleY(0.1); transform-origin: center; }
 
-        /* --- ЧАТ (Liquid Glass) --- */
         .chat-history {
             flex: 1;
             overflow-y: auto;
@@ -349,15 +332,15 @@
         .message.user {
             align-self: flex-end;
             background: var(--user-msg-bg);
-            border: 1px solid rgba(57, 255, 20, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.3);
             color: #fff;
             border-bottom-right-radius: 2px;
-            box-shadow: 0 4px 15px rgba(57, 255, 20, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.15);
         }
 
         .message.ai {
             align-self: flex-start;
-            background: rgba(57, 255, 20, 0.05);
+            background: rgba(0, 212, 255, 0.05);
             border: 1px solid var(--glass-border);
             border-bottom-left-radius: 2px;
         }
@@ -365,7 +348,7 @@
         .typing-indicator {
             display: none;
             align-self: center;
-            background: rgba(57, 255, 20, 0.08);
+            background: rgba(0, 212, 255, 0.08);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             padding: 10px 18px;
@@ -394,12 +377,11 @@
             40% { transform: scale(1); opacity: 1; }
         }
 
-        /* --- ПАНЕЛЬ ВВОДА (Liquid Glass) --- */
         .input-panel {
             padding: 12px 15px;
             display: flex;
             gap: 10px;
-            background: rgba(10, 14, 10, 0.6);
+            background: rgba(10, 14, 26, 0.6);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border-top: 1px solid var(--glass-border);
@@ -423,17 +405,16 @@
 
         .input-panel input:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
-            background: rgba(57, 255, 20, 0.05);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            background: rgba(0, 212, 255, 0.05);
         }
 
-        /* Минималистичные кнопки */
         .btn {
             width: 44px;
             height: 44px;
             border-radius: 50%;
             border: 1px solid var(--primary-color);
-            background: rgba(57, 255, 20, 0.08);
+            background: rgba(0, 212, 255, 0.08);
             backdrop-filter: blur(10px);
             color: var(--primary-color);
             cursor: pointer;
@@ -448,8 +429,8 @@
 
         .btn:hover {
             opacity: 1;
-            background: rgba(57, 255, 20, 0.15);
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+            background: rgba(0, 212, 255, 0.15);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
         }
 
         .btn:active { transform: scale(0.9); }
@@ -484,7 +465,6 @@
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
 
-        /* --- МОДАЛЬНОЕ ОКНО (Liquid Glass) --- */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -500,20 +480,20 @@
         .modal-overlay.active { display: flex; }
 
         .modal {
-            background: rgba(13, 18, 13, 0.85);
+            background: rgba(13, 18, 30, 0.85);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
             border: 1px solid var(--primary-color);
             border-radius: 16px;
             padding: 25px;
             min-width: 320px;
-            box-shadow: 0 0 40px rgba(57, 255, 20, 0.3), 0 10px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.3), 0 10px 40px rgba(0, 0, 0, 0.5);
         }
 
         .modal h3 {
             margin: 0 0 15px;
             color: var(--primary-color);
-            text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
 
         .modal input, .modal select {
@@ -533,7 +513,7 @@
 
         .modal input:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
         }
 
         .modal-actions {
@@ -555,11 +535,11 @@
         .modal-btn.primary {
             background: var(--primary-color);
             color: var(--bg-color);
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
         }
 
         .modal-btn.primary:hover {
-            box-shadow: 0 0 25px rgba(57, 255, 20, 0.6);
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
         }
 
         .modal-btn.secondary {
@@ -573,7 +553,6 @@
             background: rgba(255,255,255,0.1);
         }
 
-        /* --- АДАПТИВНОСТЬ --- */
         @media (max-width: 768px) {
             .sidebar {
                 position: fixed;
@@ -590,7 +569,6 @@
 </head>
 <body>
 
-    <!-- БОКОВАЯ ПАНЕЛЬ -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h2>Vecta</h2>
@@ -599,17 +577,13 @@
         <div class="chats-list" id="chatsList"></div>
     </aside>
 
-    <!-- ОСНОВНАЯ ОБЛАСТЬ -->
     <main class="main">
         <div class="top-bar">
             <button class="btn-toggle-sidebar" id="btnToggleSidebar">☰</button>
             <div class="current-chat-title" id="currentChatTitle">Новый чат</div>
         </div>
 
-        <!-- Дата и время -->
         <div class="datetime-display" id="datetimeDisplay"></div>
-
-        <!-- Название VECTA AI -->
         <div class="vecta-title">VECTA AI</div>
 
         <div class="robot-container">
@@ -647,13 +621,11 @@
         </div>
     </main>
 
-    <!-- МОДАЛКИ -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal" id="modalContent"></div>
     </div>
 
     <script>
-        // ====== ХРАНИЛИЩЕ ======
         const STORAGE_KEY = 'vecta_chats_v1';
         
         let state = {
@@ -694,7 +666,6 @@
             return state.chats.find(c => c.id === state.currentChatId);
         }
 
-        // ====== UI ======
         const chatHistory = document.getElementById('chatHistory');
         const userInput = document.getElementById('userInput');
         const sendBtn = document.getElementById('sendBtn');
@@ -708,10 +679,9 @@
         const modalContent = document.getElementById('modalContent');
         const datetimeDisplay = document.getElementById('datetimeDisplay');
 
-     const BACKEND_URL = 'https://luminance-amnesty-scrubbed.ngrok-free.app';
+        const BACKEND_URL = 'https://luminance-amnesty-scrubbed.ngrok-free.dev';
         let isProcessing = false;
 
-        // Обновление даты и времени
         function updateDateTime() {
             const now = new Date();
             const options = { 
@@ -892,7 +862,6 @@
             return div.innerHTML;
         }
 
-        // ====== ЭМОЦИИ ======
         function setEmotion(emotion) {
             robot.className.baseVal = 'robot';
             if (emotion) robot.classList.add(emotion);
@@ -920,7 +889,6 @@
             return 'happy';
         }
 
-        // ====== ОТПРАВКА СООБЩЕНИЙ ======
         function showTyping(show) {
             typingIndicator.style.display = show ? 'block' : 'none';
             chatHistory.scrollTop = chatHistory.scrollHeight;
@@ -969,7 +937,6 @@
             }
         }
 
-        // ====== ГОЛОСОВОЙ ВВОД ======
         let recognition = null;
         let isRecording = false;
 
@@ -1032,7 +999,6 @@
             }
         });
 
-        // ====== СОБЫТИЯ ======
         sendBtn.addEventListener('click', () => sendMessage());
         userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
         
@@ -1050,7 +1016,6 @@
             if (e.target === modalOverlay) closeModal();
         });
 
-        // ====== ИНИЦИАЛИЗАЦИЯ ======
         loadState();
         initSpeechRecognition();
         renderChatsList();
